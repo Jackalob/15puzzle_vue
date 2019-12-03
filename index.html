@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./dist/css/main.css">
+  <title>15 puzzle</title>
+</head>
+
+<body>
+  <div id="app">
+    <section class="sec">
+      <div class="container" :style='winCheck ? "opacity:0.2" : ""'>
+        <div class="pack">
+          <h1>Puzzle Games</h1>
+          <div class="chooseType">
+            <button class='btn' :class='num == 3 ? "status" : ""' @click="num=3">3x3</button>
+            <button class='btn' :class='num == 4 ? "status" : ""'  @click='num=4'>4x4</button>
+          </div>
+          <div class="outerCube" :style='{width:num*116+"px", height:num*116+"px"}'>
+              <template v-for='rows,i in grid'>
+                  <cube :key='cols.value' :val='cols.value' :pos={x:i,y:j} :num='num' v-for='cols,j in grid[i]' @swap-check='swapHandler({x:i,y:j})'></cube>
+              </template>
+          </div>
+          <button class='btn shuffle-btn' @click='shuffle'>New Game</button>
+        </div>
+      </div>
+      <div class="mask" v-if='winCheck'>
+          <div class="win-interface">
+            <h3>Excellent!</h3>
+            <p>It took you {{totalMoves}} moves</p>
+            <button class="win-btn" @click='restart'>Play Again</button>
+          </div>
+      </div>
+    </section>
+  </div>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js'></script>
+  <script src='./script.js'></script>
+</body>
+
+</html>

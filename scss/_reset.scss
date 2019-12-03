@@ -1,0 +1,29 @@
+@import 'normalize';
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+h1{
+    margin: 0;
+}
+*,
+:after,
+:before {
+    box-sizing: border-box;
+}
+
+html{
+    line-height: 1.4;
+}
+
+a {
+    text-decoration: none;
+}
+li {
+    list-style: none;
+}
+img{
+    display: block;
+}

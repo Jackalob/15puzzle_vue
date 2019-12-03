@@ -1,0 +1,55 @@
+@mixin media($name) {
+    @media screen and (max-width: map-get($device,$name)) {
+        @content;
+    }
+}
+@mixin container($width:100%){
+    width: $width;
+    height:100%;
+    margin: 0 auto;
+}
+@mixin font-setting($fwOrder: -1, $fzOrder: -1,$colorKey: primary) {
+    font-weight: nth($fw, $fwOrder);
+    font-size: nth($fz, $fzOrder);
+    color: map-get($map: $color, $key: $colorKey);
+}
+
+@mixin bg-setting($url:'', $positionX: center, $positionY: center ){
+    @if $url == ''{
+        @error '請輸入網址';
+    }
+    background: url($url) no-repeat $positionX $positionY / cover;
+}
+
+@mixin pseudo($pseudo: before, $content: '', $position: true) {
+    @if $position == true {
+        &::#{$pseudo} {
+            @extend %pseudo-position;
+            content: '#{$content}';
+            @content;
+        }
+    } @else {
+        &::#{$pseudo} {
+            content: '#{$content}';
+            display: block;
+            @content;
+        }
+    }
+}
+
+@mixin flex($jc:center,$ai :center,$dir:none){
+    display: flex;
+    @if map-get($jc-status,$jc) and map-get($ai-status,$ai){
+        justify-content: map-get($jc-status,$jc); 
+        align-items: map-get($ai-status,$ai);
+    }
+    @else if map-get($jc-status,$jc){
+        justify-content: map-get($jc-status,$jc);
+    }
+    @else if map-get($ai-status,$ai){
+        align-items: map-get($ai-status,$ai);
+    }
+    @if map-get($direction, $dir){
+        flex-direction: map-get($direction, $dir);
+    }
+}

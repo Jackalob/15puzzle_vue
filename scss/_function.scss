@@ -1,0 +1,18 @@
+@function lineHeight($fontSizeIndex, $p: 2px) {
+  @return (nth($fzList, $fontSizeIndex) + $p * 2);
+}
+
+//行高
+@function rhythm($size) {
+  @return ceil($size * $base_line_padding / $base_line_height) * $base_line_height;
+}
+
+//字級大小＋客製行高
+@function font($level: 1) {
+  @return nth($font-size, $level);
+}
+
+@mixin  font-size-lh($level:1) {
+  font-size: font($level);
+  line-height: rhythm(font($level));
+}

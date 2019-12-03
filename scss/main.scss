@@ -1,0 +1,172 @@
+
+@import 'reset';
+@import 'variable';
+@import 'function';
+@import 'extend';
+@import 'mixin';
+@import 'grid';
+@import 'font';
+
+//var
+$pcMargin: 30px;
+$mbMargin: $pcMargin/2;
+$cubeSize: 92px;
+$borderR: 8px;
+
+//utils
+html,body{
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+}
+body{
+    color: map-get($map: $color, $key: primary);
+}
+.container {
+    @include container();
+    padding: 0 10px;
+    @include flex(start,center,col)
+}
+button{
+    outline: none;
+    cursor: pointer;
+}
+.btn{
+    color: map-get($map: $color, $key: primary);
+    background-color: #fff;
+    border: 2px solid map-get($map: $color, $key: primary);
+    border-radius: $borderR/1.8;
+    transition: background-color .3s ;
+}
+//main
+#app,.sec{
+    height: 100%;
+}
+.sec{
+    position: relative;
+    @at-root .pack{
+        padding: 0 $pcMargin;
+        text-align: center;
+        border: 3px solid #42B883;
+        border-radius: $borderR;
+        margin-top: 80px;
+        >h1{
+            font-size: 40px;
+            margin-top: $pcMargin;
+        }
+    }
+    @at-root .chooseType{
+        margin-top: $pcMargin;
+        >button{
+            margin: 0 5px;
+            padding: 5px 10px;
+        }
+    }
+    @at-root .outerCube{
+        @extend %clearfix;
+        margin-top: $pcMargin;
+    }
+    @at-root .cube{
+        width: $cubeSize;
+        height:  $cubeSize;
+        line-height:  $cubeSize;
+        color: map-get($map: $color, $key: secondary);
+        background-color: #42B883;
+        float: left;
+        margin: 12px;
+        border-radius: $borderR;
+        cursor: pointer;
+        text-align: center;
+        font-size: 2.5rem;
+        position: relative;
+        transition: opacity .3s;
+        @include pseudo(){
+            width: 115%;
+            height: 115%;
+            background-color: transparent;
+            border: 3px solid #42B883;
+            border-radius: $borderR*1.5;
+            transform: translate(-50%,-50%);
+            top: 50%;
+            left: 50%;
+        }
+    }
+    .shuffle-btn{
+        padding: 10px 0;
+        margin: $pcMargin 0;
+        width: 100%;
+        border-width: 3px;
+        background-color: map-get($map: $color, $key: secondary);
+        transition: all .2s;
+        &:hover{
+            background-color: map-get($map: $color, $key: primary);
+            color: map-get($map: $color, $key: secondary);
+        }
+    }
+    //status
+    @at-root .status{
+        background-color: map-get($map: $color, $key: primary);
+        color: map-get($map: $color, $key: secondary)
+    }
+    @at-root .space{
+        opacity: 0;
+    }
+    @at-root .correct{
+        background-color: map-get($map: $color, $key: accent1);
+        &::before{
+            border-color: map-get($map: $color, $key: accent1);
+        }
+    }
+    //win
+    @at-root .mask{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        .win-interface{
+            position: relative;
+            text-align: center;
+            width: 250px;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            color: map-get($map: $color, $key: secondary);
+            background-color: map-get($map: $color, $key: primary);
+            padding: 20px 0 30px;
+            border-radius: 10px;
+            >h3{
+                margin-bottom: 10px;
+                font-size: 40px;
+            }
+            >p{
+                margin-bottom: 20px;
+            }
+            >button{
+                width: 80%;
+                padding: 15px 0 ;
+                font-size: 20px;
+                margin-bottom:  0 0 20px;
+                background-color: map-get($map: $color, $key: secondary);
+                color: map-get($map: $color, $key: primary);
+                border: none;
+                border-radius: 10px;
+                transition: background-color .3s;
+                position: relative;
+                @include pseudo(){
+                    width: 105%;
+                    height: 120%;
+                    background-color: transparent;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%,-50%);
+                    border: 3px solid map-get($map: $color, $key: secondary)
+                }
+                &:hover{
+                    background-color: map-get($map: $color, $key: primary);
+                    color: map-get($map: $color, $key: secondary);
+                }
+            }
+        }
+    }
+}
+

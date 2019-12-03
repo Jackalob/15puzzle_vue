@@ -1,0 +1,24 @@
+// @function fs($level) {
+//   @return nth($fz, $level);
+// }
+
+// @mixin fs-responsive($key) {
+//   $fs: fs($key);
+//   font-size: $fs;
+
+//   @each $name,
+//   $val in $breakpoints {
+//       $fs-responsive: $fs * get-font-size-responsive($font-responsive-list, $name);
+
+//       @include breakpoint-down($name) {
+//           font-size: $fs-responsive;
+//       }
+//   }
+// }
+
+// @for $i from 1 through length($font-size) {
+//   h#{$i} {
+//       // font-size: fs($i);
+//       @include fs-responsive($i);
+//   }
+// }

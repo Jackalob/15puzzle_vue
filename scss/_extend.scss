@@ -1,0 +1,31 @@
+%flex-both-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+%flex-ai-center {
+    display: flex;
+    align-items: center;
+}
+%flex-jc-center {
+    display: flex;
+    justify-content: center;
+}
+%pos-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+%clearfix {
+    &::after {
+        content: '';
+        height: 0;
+        display: block;
+        clear: both;
+    }
+}
+%pseudo-position {
+    position: absolute;
+    display: block;
+}

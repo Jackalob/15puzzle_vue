@@ -1,0 +1,37 @@
+$fz: 26px 18px 14px 2.5vw;
+$fw: 800 400;
+
+
+$color: (
+    primary: #42B883,
+    secondary: #fff,
+    accent1: #FFAFAF,
+);
+
+$device: (
+    pc: 1200px,
+    pcsm: 950px,
+    tablet: 800px,
+    mobile: 670px
+);
+
+$jc-status:(
+    center: center,
+    start:flex-start,
+    end:flex-end,
+    between:space-between,
+    around:space-around,
+    initial: initial,
+);
+
+$ai-status:(
+    center: center,
+    start:flex-start,
+    end:flex-end,
+    initial: initial,
+);
+
+$direction:(
+    row: row,
+    col: column,
+);

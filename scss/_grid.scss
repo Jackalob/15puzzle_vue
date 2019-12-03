@@ -1,0 +1,85 @@
+
+//算出gutter長度= width的五分之一
+@function gutter($num){
+    @return 100%/$num * 1/5;
+}
+
+$cols: 24;
+$gutter: gutter($cols);
+$grid-media: (
+    lg: map-get($map: $device, $key: pcsm),
+    md: map-get($map: $device, $key: tablet),
+    sm: map-get($map: $device, $key: mobile)
+);
+
+//算每個col的寬度
+@function col-width($colNum: 1){
+    $cols: 24 !default;
+    @if($colNum <= 0){
+        $colNum : 0;
+    }
+    @else if ($colNum >= $cols){
+        $colNum : $cols;
+    }
+    @return calc(#{100% / $cols * $colNum} - #{$gutter});
+}
+
+//判斷col-0的margin
+@function gutterOrNot($i:1){
+    @if($i == 0){
+        @return 0;
+    }
+    @return $gutter/2;
+}   
+
+//產col-0到col-#{$cols}
+.grid{
+    display: flex;
+    flex-wrap: wrap;
+    @for $i from 0 through $cols{
+        .col-#{$i}{
+            width: col-width($i);
+            margin: 0 gutterOrNot($i) gutterOrNot($i);
+        }
+    }
+    @each $key, $value in $grid-media{
+        @media screen and (max-width: #{$value}){
+            @for $i from 0 through $cols{
+                .col-#{$key}-#{$i}{
+                    width: col-width($i);
+                    margin: 0 gutterOrNot($i) gutterOrNot($i);
+                }
+            }
+        }
+    }
+}
+
+.jc-center{
+    justify-content: center;
+}
+.jc-start{
+    justify-content: flex-start;
+}
+.jc-end{
+    justify-content: flex-end;
+}
+.jc-bt{
+    justify-content: space-between;
+}
+.jc-around{
+    justify-content: space-around;
+}
+.ai-center{
+    align-content: center;
+}
+.ai-start{
+    align-items: flex-start;
+}
+.ai-end{
+    align-items: flex-end;
+}
+
+.afd{
+    height: 100px;
+    background-color: #f00;
+}
